@@ -635,8 +635,7 @@ async def start(client, message):
             return
     button = []
     if STREAM_MODE == True:
-        button.append([InlineKeyboardButton('⭐ ғᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ 🚀 + 🎥 ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ ⭐', callback_data=f'generate_stream_link:{file_id}')
-		      ],[InlineKeyboardButton('🍿🎥 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🎥🍿', url='https://t.me/Radhe_Krishn_Movies')])
+        button.append([InlineKeyboardButton('⭐ ғᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ 🚀 + 🎥 ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ ⭐', callback_data=f'generate_stream_link:{file_id}')])
     msg = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
