@@ -24,12 +24,9 @@ async def start(client, message):
         pass
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
-            InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            InlineKeyboardButton('⇋ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ⇌', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ],[
-            InlineKeyboardButton('✪ Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
-            InlineKeyboardButton('⌬ Mᴏᴠɪᴇ Gʀᴏᴜᴘ', url=GRP_LNK)
-        ],[
-            InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
+            InlineKeyboardButton('ꜱᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup, disable_web_page_preview=True)
@@ -68,7 +65,7 @@ async def start(client, message):
                 InlineKeyboardButton('✨ ʙᴜʏ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ : ʀᴇᴍᴏᴠᴇ ᴀᴅꜱ ✨', callback_data='seeplans')
             ]]
         if CLONE_MODE == True:
-            buttons.append([InlineKeyboardButton('🤖 Cʀᴇᴀᴛᴇ Yᴏᴜʀ Oᴡɴ Cʟᴏɴᴇ Bᴏᴛ 🤖', callback_data='clone')])
+            buttons.append([InlineKeyboardButton('🤖 ᴄʀᴇᴀᴛᴇ ʏᴏᴜʀ ᴏᴡɴ ᴄʟᴏɴᴇ ʙᴏᴛ 🤖', callback_data='clone')])
         reply_markup = InlineKeyboardMarkup(buttons)
         m=await message.reply_sticker("CAACAgUAAxkBAAEKVaxlCWGs1Ri6ti45xliLiUeweCnu4AACBAADwSQxMYnlHW4Ls8gQMAQ") 
         await asyncio.sleep(1)
@@ -168,9 +165,9 @@ async def start(client, message):
         user_id = int(data.split("-", 1)[1])
         vj = await referal_add_user(user_id, message.from_user.id)
         if vj and PREMIUM_AND_REFERAL_MODE == True:
-            await message.reply(f"<b>You have joined using the referral link of user with ID {user_id}\n\nSend /start again to use the bot</b>")
+            await message.reply(f"<b>𝙔𝙤𝙪 𝙝𝙖𝙫𝙚 𝙗𝙚𝙚𝙣 𝙨𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡𝙡𝙮 𝙞𝙣𝙫𝙞𝙩𝙚𝙙 𝙗𝙮 {message.from_user.mention}\n\n𝙨𝙚𝙣𝙙 /start 𝙖𝙜𝙖𝙞𝙣 𝙩𝙤 𝙪𝙨𝙚 𝙢𝙚</b>")
             num_referrals = await get_referal_users_count(user_id)
-            await client.send_message(chat_id = user_id, text = "<b>{} start the bot with your referral link\n\nTotal Referals - {}</b>".format(message.from_user.mention, num_referrals))
+            await client.send_message(chat_id = user_id, text = "<b>{} 𝙨𝙩𝙖𝙧𝙩𝙚𝙙 𝙩𝙝𝙚 𝙗𝙤𝙩 𝙬𝙞𝙩𝙝 𝙮𝙤𝙪𝙧 𝙧𝙚𝙛𝙚𝙧𝙧𝙖𝙡 𝙡𝙞𝙣𝙠\n\n𝙔𝙤𝙪𝙧 𝙏𝙤𝙩𝙖𝙡 𝙍𝙚𝙛𝙚𝙧𝙖𝙡𝙨 - {}</b>".format(message.from_user.mention, num_referrals))
             if num_referrals == REFERAL_COUNT:
                 time = REFERAL_PREMEIUM_TIME       
                 seconds = await get_seconds(time)
@@ -179,7 +176,7 @@ async def start(client, message):
                     user_data = {"id": user_id, "expiry_time": expiry_time} 
                     await db.update_user(user_data)  # Use the update_user method to update or insert user data
                     await delete_all_referal_users(user_id)
-                    await client.send_message(chat_id = user_id, text = "<b>You Have Successfully Completed Total Referal.\n\nYou Added In Premium For {}</b>".format(REFERAL_PREMEIUM_TIME))
+                    await client.send_message(chat_id = user_id, text = "<b>𝙔𝙤𝙪 𝙃𝙖𝙫𝙚 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡𝙡𝙮 𝘾𝙤𝙢𝙥𝙡𝙚𝙩𝙚𝙙 𝙏𝙤𝙩𝙖𝙡 𝙍𝙚𝙛𝙚𝙧𝙖𝙡.\n\n𝙔𝙤𝙪 𝘼𝙙𝙙𝙚𝙙 𝙄𝙣 𝙋𝙧𝙚𝙢𝙞𝙪𝙢 𝙁𝙤𝙧 {}</b>".format(REFERAL_PREMEIUM_TIME))
                     return 
         else:
             if PREMIUM_AND_REFERAL_MODE == True:
@@ -318,11 +315,11 @@ async def start(client, message):
                 continue
             await asyncio.sleep(1) 
         await sts.delete()
-        k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>‼️ ɪᴍᴘᴏʀᴛᴀɴᴛ ‼️</u></b>\n\nᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 10 ᴍɪɴᴜᴛᴇ\nᴀɴᴅ ꜰᴏʀᴡᴀʀᴅ ꜰɪʟᴇꜱ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇ</b>")
+        k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>‼️ ɪᴍᴘᴏʀᴛᴀɴᴛ ‼️</u></b>\n\n**ᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 10 ᴍɪɴᴜᴛᴇ\nᴀɴᴅ ꜰᴏʀᴡᴀʀᴅ ꜰɪʟᴇꜱ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇ**\n**ꜰᴏʀᴡᴀʀᴅ ꜰᴏᴜʀ ꜰɪʟᴇ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇꜱ**</b>")
         await asyncio.sleep(600)
         for x in filesarr:
             await x.delete()
-        await k.edit_text("<b>ʏᴏᴜʀ ᴀʟʟ ꜰɪʟᴇꜱ/ᴠɪᴅᴇᴏꜱ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ!!!</b>")  
+        await k.edit_text("<b>ʏᴏᴜʀ ᴀʟʟ ꜰɪʟᴇꜱ/ᴠɪᴅᴇᴏꜱ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ‼️</b>")  
         return
     
     elif data.split("-", 1)[0] == "DSTORE":
@@ -391,7 +388,7 @@ async def start(client, message):
                     ]]
                 else:
                     button = [[
-                        InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}')]]
+                        InlineKeyboardButton('🍿🎥 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🎥🍿', url='https://t.me/Radhe_Krishn_Movies')]]
                 try:
                     p = await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False, reply_markup=InlineKeyboardMarkup(button))
                     filesarr.append(p)
@@ -421,7 +418,7 @@ async def start(client, message):
                     continue
             await asyncio.sleep(1)
         await sts.delete()
-        k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>‼️ ɪᴍᴘᴏʀᴛᴀɴᴛ ‼️</u></b>\n\nᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 10 ᴍɪɴᴜᴛᴇ \nᴀɴᴅ ꜰᴏʀᴡᴀʀᴅ ꜰɪʟᴇꜱ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇ</b>")
+        k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>‼️ ɪᴍᴘᴏʀᴛᴀɴᴛ ‼️</u></b>\n\nᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 10 ᴍɪɴᴜᴛᴇ \n**ᴀɴᴅ ꜰᴏʀᴡᴀʀᴅ ꜰɪʟᴇꜱ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇ**\n**ꜰᴏʀᴡᴀʀᴅ ꜰᴏᴜʀ ꜰɪʟᴇ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇꜱ**</b>")
         await asyncio.sleep(600)
         for x in filesarr:
             await x.delete()
@@ -519,7 +516,8 @@ async def start(client, message):
                     return
             button = []
             if STREAM_MODE == True:
-                button.append([InlineKeyboardButton('⭐ ғᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ 🚀 + 🎥 ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ ⭐', callback_data=f'generate_stream_link:{file_id}')])
+                button.append([InlineKeyboardButton('⭐ ғᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ 🚀 + 🎥 ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ ⭐', callback_data=f'generate_stream_link:{file_id}')
+			      ],[InlineKeyboardButton('🍿🎥 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🎥🍿', url='https://t.me/Radhe_Krishn_Movies')])
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
@@ -528,7 +526,7 @@ async def start(client, message):
                 reply_markup=InlineKeyboardMarkup(button) if button else None
             )
             filesarr.append(msg)
-        k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>‼️ ɪᴍᴘᴏʀᴛᴀɴᴛ ‼️</u></b>\n\nᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 10 ᴍɪɴᴜᴛᴇ \nᴀɴᴅ ꜰᴏʀᴡᴀʀᴅ ꜰɪʟᴇꜱ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇ</b>")
+        k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>‼️ ɪᴍᴘᴏʀᴛᴀɴᴛ ‼️</u></b>\n\n**ᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 10 ᴍɪɴᴜᴛᴇ \nᴀɴᴅ ꜰᴏʀᴡᴀʀᴅ ꜰɪʟᴇꜱ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇ**\n**ꜰᴏʀᴡᴀʀᴅ ꜰᴏᴜʀ ꜰɪʟᴇ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇꜱ**</b>")
         await asyncio.sleep(600)
         for x in filesarr:
             await x.delete()
@@ -577,7 +575,8 @@ async def start(client, message):
                     return
             button = []
             if STREAM_MODE == True:
-                button.append([InlineKeyboardButton('⭐ ғᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ 🚀 + 🎥 ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ ⭐', callback_data=f'generate_stream_link:{file_id}')])
+                button.append([InlineKeyboardButton('⭐ ғᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ 🚀 + 🎥 ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ ⭐', callback_data=f'generate_stream_link:{file_id}')
+			      ],[InlineKeyboardButton('🍿🎥 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🎥🍿', url='https://t.me/Radhe_Krishn_Movies')])
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
@@ -601,7 +600,7 @@ async def start(client, message):
             btn = [[
                 InlineKeyboardButton("♻️ ɢᴇᴛ ꜰɪʟᴇ ᴀɢᴀɪɴ ♻️", callback_data=f'del#{file_id}')
             ]]
-            k = await msg.reply("<b><u>‼️ ɪᴍᴘᴏʀᴛᴀɴᴛ ‼️</u></b>\n\nᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 10 ᴍɪɴᴜᴛᴇ\nᴀɴᴅ ꜰᴏʀᴡᴀʀᴅ ꜰɪʟᴇꜱ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇ </b>",quote=True)
+            k = await msg.reply("<b><u>‼️ ɪᴍᴘᴏʀᴛᴀɴᴛ ‼️</u></b>\n\n**ᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 10 ᴍɪɴᴜᴛᴇ\nᴀɴᴅ ꜰᴏʀᴡᴀʀᴅ ꜰɪʟᴇꜱ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇ**\n**ꜰᴏʀᴡᴀʀᴅ ꜰᴏᴜʀ ꜰɪʟᴇ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇꜱ**</b>",quote=True)
             await asyncio.sleep(600)
             await msg.delete()
             await k.edit_text("<b>ʏᴏᴜʀ ꜰɪʟᴇ/ᴠɪᴅᴇᴏ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ!!\n\nᴄʟɪᴄᴋ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ᴅᴇʟᴇᴛᴇᴅ ꜰɪʟᴇ 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
@@ -637,7 +636,8 @@ async def start(client, message):
             return
     button = []
     if STREAM_MODE == True:
-        button.append([InlineKeyboardButton('⭐ ғᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ 🚀 + 🎥 ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ ⭐', callback_data=f'generate_stream_link:{file_id}')])
+        button.append([InlineKeyboardButton('⭐ ғᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ 🚀 + 🎥 ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ ⭐', callback_data=f'generate_stream_link:{file_id}')
+		      ],[InlineKeyboardButton('🍿🎥 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🎥🍿', url='https://t.me/Radhe_Krishn_Movies')])
     msg = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
@@ -648,7 +648,7 @@ async def start(client, message):
     btn = [[
         InlineKeyboardButton("♻️ ɢᴇᴛ ꜰɪʟᴇ ᴀɢᴀɪɴ ♻️", callback_data=f'del#{file_id}')
     ]]
-    k = await msg.reply("<b><u>‼️ ɪᴍᴘᴏʀᴛᴀɴᴛ ‼️</u></b>\n\nᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 10 ᴍɪɴᴜᴛᴇ \nᴀɴᴅ ꜰᴏʀᴡᴀʀᴅ ꜰɪʟᴇꜱ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇ </b></b>",quote=True)
+    k = await msg.reply("<b><u>‼️ ɪᴍᴘᴏʀᴛᴀɴᴛ ‼️</u></b>\n\n<b>ᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 10 ᴍɪɴᴜᴛᴇ \nᴀɴᴅ ꜰᴏʀᴡᴀʀᴅ ꜰɪʟᴇꜱ ᴛᴏ ꜱᴀᴠᴇᴅ ᴍᴇꜱꜱᴀɢᴇ</b>",quote=True)
     await asyncio.sleep(600)
     await msg.delete()
     await k.edit_text("<b>ʏᴏᴜʀ ꜰɪʟᴇ/ᴠɪᴅᴇᴏ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ!!\n\nᴄʟɪᴄᴋ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ᴅᴇʟᴇᴛᴇᴅ ꜰɪʟᴇ 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
@@ -663,7 +663,7 @@ async def channel_info(bot, message):
     else:
         raise ValueError("Unexpected type of CHANNELS")
 
-    text = '📑 **Indexed channels/groups**\n'
+    text = '📑 **ɪɴᴅᴇxᴇᴅ ᴄʜᴀɴɴᴇʟꜱ/ɢʀᴏᴜᴘꜱ**\n'
     for channel in channels:
         chat = await bot.get_chat(channel)
         if chat.username:
@@ -692,11 +692,11 @@ async def log_file(bot, message):
 
 @Client.on_message(filters.command('delete') & filters.user(ADMINS))
 async def delete(bot, message):
-    reply = await bot.ask(message.from_user.id, "Now Send Me Media Which You Want to delete")
+    reply = await bot.ask(message.from_user.id, "<b>ɴᴏᴡ ꜱᴇɴᴅ ᴍᴇ ᴍᴇᴅɪᴀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴅᴇʟᴇᴛᴇ</b>")
     if reply.media:
-        msg = await message.reply("Processing...⏳", quote=True)
+        msg = await message.reply("<code>Processing...⏳</code>", quote=True)
     else:
-        await message.reply('Send Me Video, File Or Document.', quote=True)
+        await message.reply('<b>ꜱᴇɴᴅ ᴍᴇ ᴠɪᴅᴇᴏ, ꜰɪʟᴇ ᴏʀ ᴅᴏᴄᴜᴍᴇɴᴛ.</b>', quote=True)
         return
 
     for file_type in ("document", "video", "audio"):
@@ -704,7 +704,7 @@ async def delete(bot, message):
         if media is not None:
             break
     else:
-        await msg.edit('This is not supported file format')
+        await msg.edit('<b>ᴛʜɪꜱ ɪꜱ ɴᴏᴛ ꜱᴜᴘᴘᴏʀᴛᴇᴅ ꜰɪʟᴇ ꜰᴏʀᴍᴀᴛ</b>')
         return
     
     file_id, file_ref = unpack_new_file_id(media.file_id)
@@ -717,7 +717,7 @@ async def delete(bot, message):
             'file_id': file_id,
         })
     if result.deleted_count:
-        await msg.edit('File is successfully deleted from database')
+        await msg.edit('<b>ꜰɪʟᴇ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ꜰʀᴏᴍ ᴅᴀᴛᴀʙᴀꜱᴇ</b>')
     else:
         file_name = re.sub(r"(_|\-|\.|\+)", " ", str(media.file_name))
         unwanted_chars = ['[', ']', '(', ')']
@@ -735,7 +735,7 @@ async def delete(bot, message):
                 'file_size': media.file_size
             })
         if result.deleted_count:
-            await msg.edit('File is successfully deleted from database')
+            await msg.edit('<b>ꜰɪʟᴇ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ꜰʀᴏᴍ ᴅᴀᴛᴀʙᴀꜱᴇ</b>')
         else:
             # files indexed before https://github.com/EvamariaTG/EvaMaria/commit/f3d2a1bcb155faf44178e5d7a685a1b533e714bf#diff-86b613edf1748372103e94cacff3b578b36b698ef9c16817bb98fe9ef22fb669R39 
             # have original file name.
@@ -749,9 +749,9 @@ async def delete(bot, message):
                     'file_size': media.file_size
                 })
             if result.deleted_count:
-                await msg.edit('File is successfully deleted from database')
+                await msg.edit('<b>ꜰɪʟᴇ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ꜰʀᴏᴍ ᴅᴀᴛᴀʙᴀꜱᴇ</b>')
             else:
-                await msg.edit('File not found in database')
+                await msg.edit('<b>ꜰɪʟᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ</b>')
 
 
 @Client.on_message(filters.command('deleteall') & filters.user(ADMINS))
@@ -760,9 +760,9 @@ async def delete_all_index(bot, message):
         'This will delete all indexed files.\nDo you want to continue??',
         reply_markup=InlineKeyboardMarkup(
             [[
-                InlineKeyboardButton(text="YES", callback_data="autofilter_delete")
+                InlineKeyboardButton(text="✅ ʏᴇꜱ ✅", callback_data="autofilter_delete")
             ],[
-                InlineKeyboardButton(text="CANCEL", callback_data="close_data")
+                InlineKeyboardButton(text="❌ ᴄᴀɴᴄᴇʟ ❌", callback_data="close_data")
             ]]
         ),
         quote=True,
@@ -774,7 +774,7 @@ async def delete_all_index_confirm(bot, query):
     col.drop()
     sec_col.drop()
     await query.answer('Piracy Is Crime')
-    await query.message.edit('Succesfully Deleted All The Indexed Files.')
+    await query.message.edit('<b>ꜱᴜᴄᴄᴇꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ᴀʟʟ ᴛʜᴇ ɪɴᴅᴇxᴇᴅ ꜰɪʟᴇꜱ.</b>')
 
 
 @Client.on_message(filters.command('settings'))
